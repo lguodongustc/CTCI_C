@@ -1,13 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-void StrCompression(char str[])
+char* StrCompression(char* str)
 {
 	int len = strlen(str);
 	
-	char new[100] = {'\0'};
-
-	
+	char* comp = (char *)calloc(100,1);
 	
 	char current=NULL;
 	count=0;
@@ -17,23 +16,26 @@ void StrCompression(char str[])
 		if(current!=str[i])
 		{
 			if(count!=0)
-				new[j++]=count+'0';
+				comp[j++]=count+'0';
 			current = str[i];
-			new[j++] = str[i];
+			comp[j++] = str[i];
 		}
 	}
 
 	if(count!=0)
-		new[j++]=count+'0';
+		comp[j++]=count+'0';
 
 	if(j<=len)
-		return new;
+		return comp;
+
+	else
+		return str;
 }
 
 void main()
 {
 
-	char str[] = "aabccccaaa";
-	StrCompression(str);
+	char *str = "aabccccaaa";
+	str = StrCompression(str);
 
 }

@@ -8,10 +8,26 @@ bool IsOneOrZeroEdit(char* str1, char* str2)
 
 	int len = (len1 > len2) ? len1 : len2;
 
-	for (int i = 0; i < len; i++)
+	int i = 0;
+	int j = len1 - 1;
+	int k = len2 - 1;
+
+	int diff = 0;
+	while ((i<j) && (i<k))
 	{
-			
-	}  
+		if(str1[i]==str2[i])
+			i++;
+		else
+			diff++;
+
+		if(str2[j--]!=str2[k--])
+			diff++;
+	
+		if(diff > 1)
+			return false;
+	}
+
+	return true;
 }
 
 void main()
